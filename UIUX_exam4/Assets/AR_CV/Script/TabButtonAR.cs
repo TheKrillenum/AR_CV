@@ -17,6 +17,9 @@ public class TabButtonAR : MonoBehaviour
         if (tabGroup.bExposed == true)
         {
             tabGroup.HideAllText();
+            tabGroup.SetButtonEnabled(true);
+            Vector3 temp = new Vector3(75, transform.position.y, transform.position.z);
+            transform.SetPositionAndRotation(temp, transform.rotation);
             textCV.enabled = true;
             textCV.GetComponentInChildren<TMP_Text>().enabled = true;
         }

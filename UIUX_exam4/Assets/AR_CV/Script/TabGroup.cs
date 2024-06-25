@@ -32,7 +32,7 @@ public class TabGroup : MonoBehaviour
             button.enabled = b;
             if (b)
             {
-                Vector3 temp = new Vector3(75, button.transform.position.y, button.transform.position.z);
+                Vector3 temp = new Vector3(25, button.transform.position.y, button.transform.position.z);
                 button.transform.SetPositionAndRotation(temp, transform.rotation);
             }
             else
