@@ -1,40 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExplosionEffect : MonoBehaviour
 {
     private ParticleSystem _explosion;
     private MeshRenderer _mesh;
-    private Renderer _renderer;
     private bool hitable;
-    private int HitCount;
 
-    public List<Material> mat;
+    public TabButtonAR tabButtonAR;
+    public Button XO;
+    public AudioSource audioSource;
+    public AudioClip explosionSound;
+
+
+
 
     void Start()
     {
         _explosion = GetComponentInChildren<ParticleSystem>();
         _mesh = GetComponentInChildren<MeshRenderer>();
-        _renderer = GetComponentInChildren<Renderer>();
         hitable = true;
-        _renderer.material = mat[0];
-        //HitCount = 0;
-    }
-
-    public void GetHit(int hit)
-    {
-        if (hit >= 4)
-        {
-            Explode();
-        }
-        else
-        {
-            if (hit > 0 && hit < 4)
-            {
-                _renderer.material = mat[hit];
-            }
-        }
     }
 
     public void Explode()
@@ -56,12 +43,12 @@ public class ExplosionEffect : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Missile"))
-        {
-            Destroy(collision.gameObject);
-            DestroySelf();
-            //HitCount++;
-            //GetHit(HitCount);
-        }
+        Destroy(collision.gameObject);
+        tabButtonAR.SetAvailable();
+        XO.enabled = true;
+        XO.gameObject.SetActive(true);   
+        audioSource.clip = explosionSound;
+        audioSource.Play();
+        Explode();
     }
 }

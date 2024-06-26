@@ -7,14 +7,24 @@ public class TabButtonAR : MonoBehaviour
     public TabGroup tabGroup;
     public Image textCV;
     public Vector3 basePosition;
+    public bool available = false;
+    public AudioSource audioSource;
+    public AudioClip pressButton;
 
     private void Start()
     {
         basePosition = gameObject.transform.position;
+        gameObject.SetActive(false);
+    }
+
+    public void SetAvailable()
+    {
+        gameObject.SetActive(true);
+        available = true;
     }
     public void VisibilityOn()
     {
-        if (tabGroup.bExposed == true)
+        if (tabGroup.bExposed == true && available)
         {
             tabGroup.HideAllText();
             tabGroup.SetButtonEnabled(true);
@@ -22,6 +32,9 @@ public class TabButtonAR : MonoBehaviour
             transform.SetPositionAndRotation(temp, transform.rotation);
             textCV.enabled = true;
             textCV.GetComponentInChildren<TMP_Text>().enabled = true;
+
+            audioSource.clip = pressButton;
+            audioSource.Play();
         }
     }
 

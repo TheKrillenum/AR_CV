@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MissileMovement : MonoBehaviour
 {
-    private float movementSpeed = 1.0f;
+    private float movementSpeed = 10.0f;
     // Start is called before the first frame update
+
     void Start()
     {
-
+        WaitForDestroy();
     }
 
     // Update is called once per frame

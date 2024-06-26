@@ -7,6 +7,13 @@ public class TabGroup : MonoBehaviour
 {
     public List<TabButtonAR> tabButtons;
     public bool bExposed;
+    public AudioSource audioSource;
+    public AudioClip tabOnOff;
+
+
+    
+
+    public Button XO;
     public TMP_Text X;
     public TMP_Text O;
 
@@ -15,6 +22,8 @@ public class TabGroup : MonoBehaviour
         HideAllText();
         X.enabled = false;
         bExposed = false;
+        XO.enabled = false;
+        XO.gameObject.SetActive(false);
     }
 
     public void HideAllText()
@@ -34,10 +43,14 @@ public class TabGroup : MonoBehaviour
             {
                 Vector3 temp = new Vector3(25, button.transform.position.y, button.transform.position.z);
                 button.transform.SetPositionAndRotation(temp, transform.rotation);
+                audioSource.clip = tabOnOff;
+                audioSource.Play();
             }
             else
             {
                 button.transform.SetPositionAndRotation(button.basePosition, transform.rotation);
+                audioSource.clip = tabOnOff;
+                audioSource.Play();
             }
 
         }
