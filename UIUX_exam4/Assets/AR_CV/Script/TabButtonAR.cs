@@ -32,6 +32,10 @@ public class TabButtonAR : MonoBehaviour
             transform.SetPositionAndRotation(temp, transform.rotation);
             textCV.enabled = true;
             textCV.GetComponentInChildren<TMP_Text>().enabled = true;
+            foreach (Image img in textCV.GetComponentsInChildren<Image>())
+            {
+                img.enabled = true;
+            }
 
             audioSource.clip = pressButton;
             audioSource.Play();
@@ -42,5 +46,9 @@ public class TabButtonAR : MonoBehaviour
     {
         textCV.enabled = false;
         textCV.GetComponentInChildren<TMP_Text>().enabled = false;
+        foreach (Image img in textCV.GetComponentsInChildren<Image>())
+        {
+            img.enabled = false;
+        }
     }
 }
